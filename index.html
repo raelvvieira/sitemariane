@@ -366,6 +366,12 @@
   #reviews { background: var(--cream); }
   .reviews-header { text-align: center; margin-bottom: 48px; }
   .sk-ww-google-reviews { width: 100%; }
+  /* Compact widget cards slightly */
+  .sk-ww-google-reviews .soc-review-card,
+  .sk-ww-google-reviews [class*="review-card"] {
+    font-size: 0.85rem !important;
+    padding: 16px !important;
+  }
 
   /* ── RESULTS / CAROUSEL ── */
   #results {
@@ -593,11 +599,35 @@
     background: #25d366;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 8px 24px rgba(37,211,102,0.4);
-    transition: all 0.3s; text-decoration: none;
-    animation: popIn 0.5s 1s ease both;
+    transition: transform 0.3s; text-decoration: none;
+    animation: popIn 0.5s 1s ease both, waPulse 3s 1.5s ease-in-out infinite;
   }
-  .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.5); }
+  .whatsapp-fab:hover {
+    animation: popIn 0.5s 1s ease both;
+    transform: scale(1.12);
+    box-shadow: 0 12px 32px rgba(37,211,102,0.5);
+  }
   .whatsapp-fab svg { width: 28px; height: 28px; fill: white; }
+
+  /* Ripple ring */
+  .whatsapp-fab::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: #25d366;
+    animation: waRipple 3s 1.5s ease-out infinite;
+    z-index: -1;
+  }
+
+  @keyframes waPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  @keyframes waRipple {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.7); opacity: 0; }
+  }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
@@ -734,9 +764,9 @@
       <li><a href="#reviews">Avaliações</a></li>
       <li><a href="#about">Sobre</a></li>
       <li><a href="#locations">Localização</a></li>
-      <li><a href="https://wa.me/5548984195309" class="nav-cta">Agendar</a></li>
+      <li><a href="https://wa.me/5548984195309?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es..." class="nav-cta">Agendar</a></li>
     </ul>
-    <a href="https://wa.me/5548984195309" class="nav-mobile-cta">Agendar</a>
+    <a href="https://wa.me/5548984195309?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es..." class="nav-mobile-cta">Agendar</a>
   </div>
 </nav>
 
@@ -754,7 +784,7 @@
       </h1>
       <!-- Desktop CTA buttons (hidden on mobile) -->
       <div class="hero-actions hero-actions-desktop">
-        <a href="https://wa.me/5548984195309" class="btn-primary">
+        <a href="https://wa.me/5548984195309?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es..." class="btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.537 4.05 1.477 5.762L0 24l6.395-1.457A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.598-.5-5.1-1.373l-.366-.218-3.796.866.933-3.703-.239-.38A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
           Agendar no WhatsApp
         </a>
@@ -793,7 +823,7 @@
 
     <!-- Mobile CTA buttons (shown only on mobile, after image) -->
     <div class="hero-actions hero-actions-mobile">
-      <a href="https://wa.me/5548984195309" class="btn-primary">
+      <a href="https://wa.me/5548984195309?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es..." class="btn-primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.537 4.05 1.477 5.762L0 24l6.395-1.457A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.598-.5-5.1-1.373l-.366-.218-3.796.866.933-3.703-.239-.38A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         Agendar no WhatsApp
       </a>
@@ -947,7 +977,7 @@
       <p class="section-label">Agende agora</p>
       <h2 class="section-title">Agende sua <strong>avaliação</strong> e dê o primeiro passo</h2>
       <p class="cta-desc">Vamos entender sua expectativa e quem sabe já não começamos hoje mesmo?</p>
-      <a href="https://wa.me/5548984195309" class="btn-primary">
+      <a href="https://wa.me/5548984195309?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es..." class="btn-primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.537 4.05 1.477 5.762L0 24l6.395-1.457A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.598-.5-5.1-1.373l-.366-.218-3.796.866.933-3.703-.239-.38A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         Falar no WhatsApp
       </a>
@@ -1017,7 +1047,7 @@
     <div class="footer-col">
       <div class="footer-col-title">Contato</div>
       <a href="tel:+5548984195309" style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.96a16 16 0 006.13 6.13l1.32-1.32a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> (48) 98419-5309</a>
-      <a href="/cdn-cgi/l/email-protection#c3aea2b1aaa2ada6a7acaeaaada4b6a6b0a1acb7b7aa83a4aea2aaafeda0acae" style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <span class="__cf_email__" data-cfemail="b8d5d9cad1d9d6dddcd7d5d1d6dfcdddcbdad7ccccd1f8dfd5d9d1d496dbd7d5">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#422f23302b272c27262d2f2b2c25372731202d36362b02252f232b2e6c212d2f" style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <span class="__cf_email__" data-cfemail="e58884978c808b80818a888c8b82908096878a91918ca58288848c89cb868a88">[email&#160;protected]</span></a>
     </div>
   </div>
   <div class="footer-bottom-inner"><div class="footer-bottom">
@@ -1032,11 +1062,11 @@
 </footer>
 
 <!-- WhatsApp FAB -->
-<a href="https://wa.me/5548984195309" class="whatsapp-fab" target="_blank" aria-label="WhatsApp">
+<a href="https://wa.me/5548984195309?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es..." class="whatsapp-fab" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.537 4.05 1.477 5.762L0 24l6.395-1.457A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.598-.5-5.1-1.373l-.366-.218-3.796.866.933-3.703-.239-.38A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Progress bar
   window.addEventListener('scroll', () => {
     const total = document.documentElement.scrollHeight - window.innerHeight;
@@ -1102,13 +1132,4 @@
       startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft;
     });
     carousel.addEventListener('mouseleave', () => { isDown = false; carousel.classList.remove('dragging'); });
-    carousel.addEventListener('mouseup', () => { isDown = false; carousel.classList.remove('dragging'); });
-    carousel.addEventListener('mousemove', e => {
-      if (!isDown) return; e.preventDefault();
-      const x = e.pageX - carousel.offsetLeft;
-      carousel.scrollLeft = scrollLeft - (x - startX) * 1.5;
-    });
-  }
-</script>
-</body>
-</html>
+    carousel.addEventListener('mouseup', () => { isDown = false; carousel.classList.
