@@ -61,7 +61,7 @@
     background: rgba(247,244,239,0.72);
     border-bottom: 1px solid rgba(184,196,168,0.2);
     transition: all 0.4s ease;
-    height: 72px;
+    height: 60px;
   }
   .nav-inner {
     max-width: 1100px;
@@ -72,13 +72,13 @@
   }
 
   .nav-logo img {
-    height: 52px;
+    height: 38px;
     width: auto;
     object-fit: contain;
     display: block;
   }
 
-  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
     text-decoration: none; color: var(--text-mid);
     font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
@@ -96,15 +96,29 @@
     letter-spacing: 0.1em;
     transition: background 0.3s, transform 0.2s !important;
   }
-  .nav-cta:hover { background: var(--sage-deep) !important; transform: translateY(-1px); }
+  .nav-mobile-cta {
+    display: none;
+    padding: 8px 18px;
+    background: var(--sage-deep);
+    color: white;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  @media (max-width: 900px) {
+    .nav-mobile-cta { display: block; }
+  }
 
   /* ── HERO ── */
   #hero {
-    min-height: 100vh;
+    min-height: 88vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 120px 24px 80px;
+    padding: 90px 24px 60px;
     position: relative;
     overflow: hidden;
   }
@@ -114,7 +128,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 60px;
+    gap: 48px;
   }
 
   .hero-bg-orb {
@@ -131,47 +145,47 @@
 
   .hero-label {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 16px;
+    padding: 5px 14px;
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: 100px;
-    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--sage-deep); margin-bottom: 32px;
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--sage-deep); margin-bottom: 24px;
     box-shadow: var(--glass-shadow);
     animation: fadeUp 0.8s ease both;
   }
   .hero-label::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
     background: var(--sage-deep); display: block;
   }
 
   .hero-title {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(2rem, 3.2vw, 3.2rem);
-    font-weight: 300; line-height: 1.22;
-    letter-spacing: -0.03em;
+    font-size: clamp(1.3rem, 2.2vw, 2.4rem);
+    font-weight: 300; line-height: 1.25;
+    letter-spacing: -0.02em;
     color: var(--charcoal);
-    margin-bottom: 40px;
+    margin-bottom: 28px;
     animation: fadeUp 0.8s 0.1s ease both;
   }
   .hero-title em { font-style: normal; color: var(--sage-deep); font-weight: 500; }
 
   .hero-sub {
-    font-size: 1rem; line-height: 1.75;
-    color: var(--text-mid); max-width: 440px;
-    margin-bottom: 48px; font-weight: 300;
+    font-size: 0.9rem; line-height: 1.75;
+    color: var(--text-mid); max-width: 400px;
+    margin-bottom: 36px; font-weight: 300;
     animation: fadeUp 0.8s 0.2s ease both;
   }
 
-  .hero-actions { display: flex; gap: 16px; animation: fadeUp 0.8s 0.3s ease both; }
+  .hero-actions { display: flex; gap: 12px; animation: fadeUp 0.8s 0.3s ease both; }
 
   .btn-primary {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 32px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 26px;
     background: var(--sage-deep);
     color: white; border-radius: 100px;
-    text-decoration: none; font-size: 0.88rem;
+    text-decoration: none; font-size: 0.84rem;
     letter-spacing: 0.04em; font-weight: 500;
     transition: all 0.3s; box-shadow: 0 4px 20px rgba(90,114,72,0.3);
   }
@@ -179,11 +193,11 @@
 
   .btn-secondary {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 16px 28px;
+    padding: 13px 22px;
     background: var(--glass-bg); backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     color: var(--charcoal); border-radius: 100px;
-    text-decoration: none; font-size: 0.88rem;
+    text-decoration: none; font-size: 0.84rem;
     letter-spacing: 0.04em; transition: all 0.3s;
     box-shadow: var(--glass-shadow);
   }
@@ -192,24 +206,26 @@
   /* Social tag */
   .hero-social-tag {
     display: inline-flex; align-items: center; gap: 10px;
-    margin-top: 36px;
-    padding: 12px 20px;
+    margin-top: 28px;
+    padding: 10px 16px;
     background: white;
-    border-radius: 16px;
+    border-radius: 14px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     animation: fadeUp 0.8s 0.4s ease both;
     width: fit-content;
   }
   .social-avatar {
-    width: 38px; height: 38px; border-radius: 50%;
+    width: 32px; height: 32px; border-radius: 50%;
     background: linear-gradient(135deg, var(--sage), var(--sage-deep));
     display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 0.9rem; font-weight: 600;
+    color: white; font-size: 0.78rem; font-weight: 600;
+    overflow: hidden; flex-shrink: 0;
   }
+  .social-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
   .social-info { line-height: 1.3; }
-  .social-name { font-size: 0.82rem; font-weight: 500; }
-  .social-handle { font-size: 0.72rem; color: var(--text-light); }
-  .verified { color: #4a9edb; font-size: 0.75rem; }
+  .social-name { font-size: 0.78rem; font-weight: 500; }
+  .social-handle { font-size: 0.68rem; color: var(--text-light); }
+  .verified { color: #4a9edb; font-size: 0.72rem; }
 
   /* Hero Image */
   .hero-image-wrap {
@@ -220,21 +236,21 @@
 
   .hero-img-frame {
     position: relative;
-    width: 420px; height: 540px;
+    width: 340px; height: 440px;
   }
 
   .img-circle-bg {
-    position: absolute; top: 20px; right: 0;
-    width: 380px; height: 380px; border-radius: 50%;
+    position: absolute; top: 16px; right: 0;
+    width: 300px; height: 300px; border-radius: 50%;
     background: linear-gradient(135deg, rgba(184,196,168,0.4), rgba(201,169,110,0.2));
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255,255,255,0.6);
   }
 
   .hero-img-placeholder {
-    position: absolute; bottom: 0; left: 20px;
-    width: 340px; height: 480px;
-    border-radius: 200px 200px 120px 120px;
+    position: absolute; bottom: 0; left: 16px;
+    width: 270px; height: 390px;
+    border-radius: 160px 160px 100px 100px;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.5);
     box-shadow: 0 20px 60px rgba(90,114,72,0.18);
@@ -248,16 +264,16 @@
   .float-card {
     position: absolute;
     background: white;
-    border-radius: 20px;
-    padding: 14px 18px;
+    border-radius: 16px;
+    padding: 10px 14px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     animation: float 4s ease-in-out infinite;
   }
-  .float-card-1 { bottom: 120px; right: -30px; animation-delay: 0s; }
-  .float-card-2 { top: 80px; left: -20px; animation-delay: 2s; }
-  .float-card .card-val { font-size: 1.4rem; font-weight: 600; color: var(--sage-deep); letter-spacing: -0.03em; }
-  .float-card .card-lab { color: var(--text-light); font-size: 0.72rem; margin-top: 2px; }
+  .float-card-1 { bottom: 100px; right: -24px; animation-delay: 0s; }
+  .float-card-2 { top: 64px; left: -16px; animation-delay: 2s; }
+  .float-card .card-val { font-size: 1.2rem; font-weight: 600; color: var(--sage-deep); letter-spacing: -0.03em; }
+  .float-card .card-lab { color: var(--text-light); font-size: 0.68rem; margin-top: 2px; }
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -265,33 +281,29 @@
   }
 
   /* ── SECTION BASE ── */
-  section { padding: 100px 24px; position: relative; }
-  .section-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    width: 100%;
-  }
+  section { padding: 80px 24px; position: relative; }
+  .section-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
   .section-label {
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--sage-deep); margin-bottom: 16px; font-weight: 400;
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--sage-deep); margin-bottom: 12px; font-weight: 400;
   }
   .section-title {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-    font-weight: 300; line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--charcoal); margin-bottom: 20px;
+    font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+    font-weight: 300; line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--charcoal); margin-bottom: 16px;
   }
   .section-title strong { font-weight: 600; }
   .section-title em { font-style: normal; color: var(--sage-deep); font-weight: 500; }
 
   /* ── TREATMENTS ── */
   #treatments { background: var(--warm-white); }
-  .treatments-header { text-align: center; margin-bottom: 70px; }
+  .treatments-header { text-align: center; margin-bottom: 48px; }
 
   .treatments-grid {
     display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
 
   .treatment-card {
@@ -299,27 +311,28 @@
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
     border: 1px solid var(--glass-border);
-    border-radius: 28px; overflow: hidden;
+    border-radius: 22px; overflow: hidden;
     box-shadow: var(--glass-shadow);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: default;
   }
   .treatment-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     box-shadow: 0 20px 60px rgba(90,114,72,0.14), 0 4px 20px rgba(0,0,0,0.06);
     border-color: rgba(184,196,168,0.6);
   }
 
   .card-img {
-    height: 240px; overflow: hidden;
+    height: 190px; overflow: hidden;
     background: linear-gradient(135deg, var(--sage) 0%, var(--sage-deep) 100%);
     position: relative;
   }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .card-img-placeholder {
     width: 100%; height: 100%;
     background: linear-gradient(135deg, #c8d4be 0%, #8a9e78 100%);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-style: normal; font-weight: 500;
+    font-family: 'Outfit', sans-serif; font-size: 1.6rem;
     color: rgba(255,255,255,0.6);
   }
   .card-img-overlay {
@@ -327,77 +340,25 @@
     background: linear-gradient(180deg, transparent 40%, rgba(26,26,24,0.15) 100%);
   }
 
-  .card-body { padding: 32px; }
+  .card-body { padding: 24px; }
   .card-icon {
-    width: 44px; height: 44px; border-radius: 14px;
+    width: 38px; height: 38px; border-radius: 12px;
     background: linear-gradient(135deg, rgba(184,196,168,0.3), rgba(90,114,72,0.15));
     border: 1px solid rgba(184,196,168,0.4);
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 18px; font-size: 1.2rem;
+    margin-bottom: 14px;
   }
   .card-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.45rem; font-weight: 400; margin-bottom: 12px;
-    letter-spacing: -0.02em;
-    color: var(--charcoal);
+    font-size: 1.15rem; font-weight: 500; margin-bottom: 8px;
+    letter-spacing: -0.02em; color: var(--charcoal);
   }
-  .card-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; font-weight: 300; }
+  .card-desc { font-size: 0.84rem; color: var(--text-mid); line-height: 1.65; font-weight: 300; }
 
-  /* ── REVIEWS ── */
+  /* ── REVIEWS WIDGET ── */
   #reviews { background: var(--cream); }
-  .reviews-header { text-align: center; margin-bottom: 60px; }
-
-  .rating-hero {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 40px; background: var(--charcoal); color: white;
-    border-radius: 28px; margin-bottom: 32px; text-align: center;
-  }
-  .rating-number { font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 200; line-height: 1; letter-spacing: -0.04em; }
-  .stars { color: #f5c842; font-size: 1.2rem; margin: 8px 0; letter-spacing: 2px; }
-  .rating-sub { font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
-
-  .reviews-grid {
-    display: grid; grid-template-columns: 280px 1fr;
-    gap: 24px;
-  }
-
-  .reviews-left { display: flex; flex-direction: column; gap: 0; }
-
-  .reviews-scroll {
-    display: flex; flex-direction: column; gap: 18px;
-    max-height: 600px; overflow-y: auto;
-    padding-right: 8px;
-    scrollbar-width: thin; scrollbar-color: rgba(184,196,168,0.4) transparent;
-  }
-
-  .review-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px; padding: 24px;
-    box-shadow: var(--glass-shadow);
-    transition: transform 0.3s;
-  }
-  .review-card:hover { transform: translateY(-4px); }
-
-  .reviewer-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-  .reviewer-avatar {
-    width: 42px; height: 42px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--sage), var(--gold));
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-weight: 600; font-size: 0.9rem;
-    flex-shrink: 0;
-  }
-  .reviewer-name { font-weight: 500; font-size: 0.88rem; color: var(--charcoal); }
-  .reviewer-time { font-size: 0.72rem; color: var(--text-light); }
-  .review-stars { color: #f5c842; font-size: 0.8rem; margin-top: 2px; }
-  .review-text { font-size: 0.85rem; color: var(--text-mid); line-height: 1.65; font-weight: 300; }
-  .google-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 0.72rem; color: var(--text-light); margin-top: 14px;
-    text-decoration: none;
-  }
-  .g-icon { width: 14px; height: 14px; background: #4285f4; border-radius: 3px; display: inline-block; }
+  .reviews-header { text-align: center; margin-bottom: 48px; }
+  .sk-ww-google-reviews { width: 100%; }
 
   /* ── RESULTS ── */
   #results {
@@ -408,11 +369,11 @@
   #results .section-title em { color: var(--sage); }
 
   .results-gallery {
-    display: flex; gap: 20px; justify-content: center; margin-top: 50px;
+    display: flex; gap: 16px; justify-content: center; margin-top: 40px;
     flex-wrap: wrap; width: 100%;
   }
   .result-frame {
-    width: 280px; height: 360px; border-radius: 24px;
+    width: 220px; height: 290px; border-radius: 20px;
     overflow: hidden; position: relative;
     background: linear-gradient(180deg, #2a2a28 0%, #1a1a18 100%);
     border: 1px solid rgba(255,255,255,0.08);
@@ -441,59 +402,54 @@
   #about { background: var(--warm-white); }
   .about-grid {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: center;
+    gap: 60px; align-items: center;
   }
 
   .about-img-wrap { position: relative; }
   .about-img-frame {
     width: 100%; aspect-ratio: 4/5;
-    border-radius: 32px; overflow: hidden;
+    border-radius: 24px; overflow: hidden;
     background: linear-gradient(180deg, #c8d4be 0%, #8a9e78 100%);
-    display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.4); font-family: 'Outfit', sans-serif;
-    font-size: 1.2rem; font-style: normal;
     border: 1px solid rgba(184,196,168,0.3);
     box-shadow: 0 20px 60px rgba(90,114,72,0.15);
   }
+  .about-img-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
 
   .about-badge {
-    position: absolute; bottom: -20px; right: -20px;
-    background: white;
-    border-radius: 20px; padding: 18px 24px;
+    position: absolute; bottom: -16px; right: -16px;
+    background: white; border-radius: 16px; padding: 14px 18px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    display: flex; align-items: center; gap: 12px;
+    display: flex; align-items: center; gap: 10px;
   }
   .badge-icon {
-    width: 44px; height: 44px; border-radius: 14px;
+    width: 36px; height: 36px; border-radius: 11px;
     background: linear-gradient(135deg, var(--sage), var(--sage-deep));
     display: flex; align-items: center; justify-content: center;
   }
-  .badge-val { font-size: 1.4rem; font-weight: 600; color: var(--charcoal); line-height: 1; letter-spacing: -0.03em; }
-  .badge-lab { font-size: 0.72rem; color: var(--text-light); }
+  .badge-val { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); line-height: 1; letter-spacing: -0.03em; }
+  .badge-lab { font-size: 0.68rem; color: var(--text-light); }
 
-  .about-text .section-title { margin-bottom: 24px; }
-  .about-desc { font-size: 0.95rem; color: var(--text-mid); line-height: 1.8; font-weight: 300; margin-bottom: 20px; }
-  .about-cred-row { display: flex; gap: 32px; margin-top: 36px; }
+  .about-text .section-title { margin-bottom: 20px; }
+  .about-desc { font-size: 0.9rem; color: var(--text-mid); line-height: 1.8; font-weight: 300; margin-bottom: 16px; }
+  .about-cred-row { display: flex; gap: 28px; margin-top: 28px; }
   .cred-item { text-align: center; }
-  .cred-val { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 300; color: var(--sage-deep); letter-spacing: -0.04em; }
-  .cred-lab { font-size: 0.72rem; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+  .cred-val { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 300; color: var(--sage-deep); letter-spacing: -0.03em; }
+  .cred-lab { font-size: 0.68rem; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
 
   /* ── CTA ── */
-  #cta {
-    background: var(--cream);
-  }
+  #cta { background: var(--cream); }
   .cta-glass {
     background: var(--glass-bg);
     backdrop-filter: blur(24px);
     border: 1px solid var(--glass-border);
-    border-radius: 36px; padding: 80px;
+    border-radius: 28px; padding: 56px 60px;
     box-shadow: var(--glass-shadow);
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 60px; align-items: center;
+    gap: 48px; align-items: center;
   }
 
-  .cta-content .section-title { margin-bottom: 16px; }
-  .cta-desc { font-size: 0.95rem; color: var(--text-mid); line-height: 1.75; font-weight: 300; margin-bottom: 36px; }
+  .cta-content .section-title { margin-bottom: 12px; }
+  .cta-desc { font-size: 0.9rem; color: var(--text-mid); line-height: 1.75; font-weight: 300; margin-bottom: 28px; }
 
   .chat-mockup {
     background: #f0f2f5; border-radius: 24px; padding: 24px;
@@ -537,10 +493,10 @@
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
-    border-radius: 24px; padding: 32px 28px;
+    border-radius: 20px; padding: 24px 22px;
     box-shadow: var(--glass-shadow);
     text-decoration: none; color: inherit;
-    display: flex; flex-direction: column; gap: 16px;
+    display: flex; flex-direction: column; gap: 12px;
     transition: all 0.3s;
   }
   .location-card:hover {
@@ -561,12 +517,13 @@
   /* ── FOOTER ── */
   footer {
     background: var(--charcoal); color: rgba(255,255,255,0.7);
-    padding: 60px 24px;
+    padding: 48px 24px;
   }
   .footer-grid {
     display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 60px; max-width: 1100px; margin: 0 auto 48px;
+    gap: 48px; max-width: 1100px; margin: 0 auto 36px;
   }
+  .footer-logo img { height: 36px; width: auto; filter: brightness(0) invert(1); opacity: 0.85; }
   .footer-bottom-inner {
     max-width: 1100px; margin: 0 auto;
   }
@@ -623,20 +580,90 @@
 
   /* ── MOBILE ── */
   @media (max-width: 900px) {
-    nav { padding: 0 20px; }
+
+    /* Nav */
+    nav { padding: 0 16px; height: 60px; }
     .nav-links { display: none; }
-    #hero { padding: 100px 20px 60px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 0; }
-    .hero-image-wrap { display: none; }
-    section { padding: 70px 20px; }
-    .treatments-grid { grid-template-columns: 1fr; }
+    .nav-logo img { height: 36px; }
+
+    /* Hero — stack vertically, image on top */
+    #hero { padding: 80px 20px 48px; min-height: auto; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    /* Show image on mobile — reorder: image first, content second */
+    .hero-image-wrap {
+      display: flex;
+      order: -1;
+      justify-content: center;
+    }
+    .hero-img-frame {
+      width: 260px;
+      height: 320px;
+    }
+    .img-circle-bg {
+      width: 220px; height: 220px;
+      top: 10px; right: 0;
+    }
+    .hero-img-placeholder {
+      width: 200px; height: 280px;
+      left: 10px;
+    }
+    .float-card { display: none; }
+
+    /* Hero text */
+    .hero-label { font-size: 0.65rem; margin-bottom: 16px; }
+    .hero-title { font-size: 1.55rem; line-height: 1.28; margin-bottom: 20px; }
+    .hero-actions { flex-direction: column; gap: 10px; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; padding: 14px 20px; font-size: 0.85rem; }
+    .hero-social-tag { margin-top: 20px; }
+
+    /* Sections */
+    section { padding: 56px 20px; }
+
+    /* Section titles */
+    .section-title { font-size: 1.75rem; }
+
+    /* Treatment cards */
+    .treatments-grid { grid-template-columns: 1fr; gap: 16px; }
+    .card-img { height: 180px; }
+    .card-body { padding: 20px; }
+    .card-title { font-size: 1.2rem; }
+    .card-desc { font-size: 0.84rem; }
+
+    /* Reviews */
     .reviews-grid { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .about-badge { right: 10px; bottom: -16px; }
-    .cta-glass { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; }
-    .locations-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; gap: 36px; }
-    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+
+    /* About */
+    .about-grid { grid-template-columns: 1fr; gap: 56px; }
+    .about-img-frame { aspect-ratio: 4/3; }
+    .about-badge { right: 10px; bottom: -20px; padding: 12px 16px; }
+    .badge-val { font-size: 1.1rem; }
+    .about-cred-row { gap: 20px; }
+    .cred-val { font-size: 1.6rem; }
+
+    /* CTA */
+    .cta-glass { grid-template-columns: 1fr; padding: 32px 20px; gap: 24px; }
+    .cta-glass img { max-height: 220px; object-fit: cover; }
+
+    /* Locations */
+    .locations-grid { grid-template-columns: 1fr; gap: 12px; }
+    .location-card { padding: 20px; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-logo img { height: 40px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: 1.35rem; }
+    .section-title { font-size: 1.5rem; }
+    .hero-img-frame { width: 220px; height: 280px; }
+    .hero-img-placeholder { width: 170px; height: 240px; }
+    .img-circle-bg { width: 190px; height: 190px; }
   }
 </style>
 </head>
@@ -655,6 +682,7 @@
       <li><a href="#locations">Localização</a></li>
       <li><a href="https://wa.me/5548984195309" class="nav-cta">Agendar</a></li>
     </ul>
+    <a href="https://wa.me/5548984195309" class="nav-mobile-cta">Agendar</a>
   </div>
 </nav>
 
@@ -767,88 +795,9 @@
     <p class="section-label">Depoimentos</p>
     <h2 class="section-title">O que meus <strong>pacientes</strong> estão dizendo</h2>
   </div>
-  <div class="reviews-grid">
-    <div class="reviews-left reveal">
-      <div class="rating-hero">
-        <div class="rating-number">5.0</div>
-        <div class="stars">★★★★★</div>
-        <div class="rating-sub">83 avaliações no Google</div>
-      </div>
-    </div>
-    <div class="reviews-scroll reveal" style="transition-delay:0.1s">
-      <div class="review-card">
-        <div class="reviewer-head">
-          <div class="reviewer-avatar">AC</div>
-          <div>
-            <div class="reviewer-name">Alexya Coelho</div>
-            <div class="review-stars">★★★★★</div>
-            <div class="reviewer-time">há 5 meses</div>
-          </div>
-        </div>
-        <p class="review-text">Atendimento impecável e profissional excelente, já é minha Dr da vidaaaa</p>
-        <a href="#" class="google-badge"><span class="g-icon"></span> Ver no Google</a>
-      </div>
-      <div class="review-card">
-        <div class="reviewer-head">
-          <div class="reviewer-avatar" style="background: linear-gradient(135deg, #e8a87c, #c96a3a);">P</div>
-          <div>
-            <div class="reviewer-name">Patricia Raimundo</div>
-            <div class="review-stars">★★★★★</div>
-            <div class="reviewer-time">há 5 meses</div>
-          </div>
-        </div>
-        <p class="review-text">Excelente atendimento! Virou minha dentista pra vida. Muito atenciosa, simpática e profissional!</p>
-        <a href="#" class="google-badge"><span class="g-icon"></span> Ver no Google</a>
-      </div>
-      <div class="review-card">
-        <div class="reviewer-head">
-          <div class="reviewer-avatar" style="background: linear-gradient(135deg, #7ec8e3, #3a7dc9);">SG</div>
-          <div>
-            <div class="reviewer-name">Sol Guarnieri</div>
-            <div class="review-stars">★★★★★</div>
-            <div class="reviewer-time">há 3 meses</div>
-          </div>
-        </div>
-        <p class="review-text">Amei o atendimento, recomendo muito.</p>
-        <a href="#" class="google-badge"><span class="g-icon"></span> Ver no Google</a>
-      </div>
-      <div class="review-card">
-        <div class="reviewer-head">
-          <div class="reviewer-avatar" style="background: linear-gradient(135deg, #a87ec8, #6a3ac9);">JA</div>
-          <div>
-            <div class="reviewer-name">João Alberto</div>
-            <div class="review-stars">★★★★★</div>
-            <div class="reviewer-time">há 5 meses</div>
-          </div>
-        </div>
-        <p class="review-text">Atendimento carinhoso e humanizado. Uma profissional acima da média, atenciosa e cheia de paciência para quem tem receio de dentista (como eu, meu marido e meus filhos kkkkk).</p>
-        <a href="#" class="google-badge"><span class="g-icon"></span> Ver no Google</a>
-      </div>
-      <div class="review-card">
-        <div class="reviewer-head">
-          <div class="reviewer-avatar" style="background: linear-gradient(135deg, #c8e3a8, #5a9e48);">NN</div>
-          <div>
-            <div class="reviewer-name">Natasha Nygaya Ribeiro Garcia</div>
-            <div class="review-stars">★★★★★</div>
-            <div class="reviewer-time">há 4 meses</div>
-          </div>
-        </div>
-        <p class="review-text">Atendimento impecável, além de uma profissional extremamente cuidadosa e atenciosa. Amei.</p>
-        <a href="#" class="google-badge"><span class="g-icon"></span> Ver no Google</a>
-      </div>
-      <div class="review-card">
-        <div class="reviewer-head">
-          <div class="reviewer-avatar" style="background: linear-gradient(135deg, #f0c878, #c89a38);">AA</div>
-          <div>
-            <div class="reviewer-name">Agatha Andriola</div>
-            <div class="review-stars">★★★★★</div>
-            <div class="reviewer-time">há 5 meses</div>
-          </div>
-        </div>
-        <p class="review-text">Atendimento impecável! tirei os 4 sisos e foi tranquilo demais. Consultório aconchegante, e a Dr. muito atenciosa e querida! Recomendo demais, parece a fada do dente de tão tão maravilhosa .</p>
-        <a href="#" class="google-badge"><span class="g-icon"></span> Ver no Google</a>
-      </div>
-    </div>
+  <div class="reveal" style="transition-delay:0.1s;">
+    <div class="sk-ww-google-reviews" data-embed-id="25622653"></div>
+    <script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
   </div>
   </div><!-- end section-inner -->
 </section>
