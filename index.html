@@ -203,14 +203,17 @@
   }
   .btn-secondary:hover { background: white; transform: translateY(-2px); }
 
-  /* Social tag */
+  /* Social tag — overlaid on image */
   .hero-social-tag {
+    position: absolute;
+    bottom: 20px; left: -10px;
     display: inline-flex; align-items: center; gap: 10px;
-    margin-top: 28px;
     padding: 10px 16px;
-    background: white;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
     border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.14);
+    z-index: 10;
     animation: fadeUp 0.8s 0.4s ease both;
     width: fit-content;
   }
@@ -221,11 +224,15 @@
     color: white; font-size: 0.78rem; font-weight: 600;
     overflow: hidden; flex-shrink: 0;
   }
-  .social-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .social-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
   .social-info { line-height: 1.3; }
-  .social-name { font-size: 0.78rem; font-weight: 500; }
+  .social-name { font-size: 0.78rem; font-weight: 500; color: var(--charcoal); }
   .social-handle { font-size: 0.68rem; color: var(--text-light); }
   .verified { color: #4a9edb; font-size: 0.72rem; }
+
+  /* Desktop shows actions in content col; mobile shows after image */
+  .hero-actions-mobile { display: none; }
+  .hero-actions-desktop { display: flex; gap: 12px; animation: fadeUp 0.8s 0.3s ease both; }
 
   /* Hero Image */
   .hero-image-wrap {
@@ -360,7 +367,7 @@
   .reviews-header { text-align: center; margin-bottom: 48px; }
   .sk-ww-google-reviews { width: 100%; }
 
-  /* ── RESULTS ── */
+  /* ── RESULTS / CAROUSEL ── */
   #results {
     background: var(--charcoal); color: white;
     text-align: center;
@@ -368,35 +375,67 @@
   #results .section-title { color: white; }
   #results .section-title em { color: var(--sage); }
 
-  .results-gallery {
-    display: flex; gap: 16px; justify-content: center; margin-top: 40px;
-    flex-wrap: wrap; width: 100%;
+  .results-carousel-wrap {
+    position: relative;
+    margin-top: 40px;
+    overflow: hidden;
   }
-  .result-frame {
-    width: 220px; height: 290px; border-radius: 20px;
-    overflow: hidden; position: relative;
-    background: linear-gradient(180deg, #2a2a28 0%, #1a1a18 100%);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    transition: transform 0.4s;
+
+  .results-carousel {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 8px 4px 16px;
+    cursor: grab;
+    user-select: none;
   }
-  .result-frame:hover { transform: scale(1.03); }
-  .result-frame:nth-child(2) { margin-top: -30px; }
-  .result-inner {
-    width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(184,196,168,0.1) 0%, rgba(90,114,72,0.05) 100%);
+  .results-carousel::-webkit-scrollbar { display: none; }
+  .results-carousel.dragging { cursor: grabbing; scroll-behavior: auto; }
+
+  .result-slide {
+    flex: 0 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    line-height: 0;
+    transition: transform 0.3s;
+  }
+  .result-slide:hover { transform: scale(1.02); }
+  .result-slide img {
+    display: block;
+    height: 360px;
+    width: auto;
+    max-width: none;
+    object-fit: cover;
+    border-radius: 18px;
+  }
+
+  .carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.15); font-family: 'Outfit', sans-serif;
-    font-size: 1rem; font-style: normal; letter-spacing: 0.1em;
+    transition: all 0.2s; z-index: 10;
   }
-  .before-after-tag {
-    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
-    background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 100px; padding: 6px 16px;
-    font-size: 0.72rem; color: white; letter-spacing: 0.1em; text-transform: uppercase;
-    white-space: nowrap;
+  .carousel-btn:hover { background: rgba(255,255,255,0.22); }
+  .carousel-prev { left: 8px; }
+  .carousel-next { right: 8px; }
+
+  .carousel-dots {
+    display: flex; justify-content: center; gap: 6px;
+    margin-top: 20px;
   }
+  .carousel-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.25); cursor: pointer;
+    transition: all 0.3s;
+  }
+  .carousel-dot.active { background: var(--sage); width: 20px; border-radius: 3px; }
 
   /* ── ABOUT ── */
   #about { background: var(--warm-white); }
@@ -584,40 +623,53 @@
     /* Nav */
     nav { padding: 0 16px; height: 60px; }
     .nav-links { display: none; }
-    .nav-logo img { height: 36px; }
+    .nav-logo img { height: 32px; }
 
-    /* Hero — stack vertically, image on top */
+    /* Hero — single column: copy → image → buttons */
     #hero { padding: 80px 20px 48px; min-height: auto; }
     .hero-inner {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 0;
     }
-    /* Show image on mobile — reorder: image first, content second */
+    /* 1. Hero content (label + title) stays on top */
+    .hero-content { order: 1; }
+    /* 2. Image in the middle */
     .hero-image-wrap {
       display: flex;
-      order: -1;
+      order: 2;
       justify-content: center;
+      margin: 24px 0 0;
     }
-    .hero-img-frame {
-      width: 260px;
-      height: 320px;
+    /* 3. Mobile CTA buttons after image */
+    .hero-actions-mobile {
+      display: flex;
+      order: 3;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+      width: 100%;
     }
-    .img-circle-bg {
-      width: 220px; height: 220px;
-      top: 10px; right: 0;
-    }
-    .hero-img-placeholder {
-      width: 200px; height: 280px;
-      left: 10px;
-    }
+    /* Hide desktop buttons on mobile */
+    .hero-actions-desktop { display: none; }
+
+    /* Bigger image on mobile */
+    .hero-img-frame { width: 300px; height: 380px; }
+    .img-circle-bg { width: 260px; height: 260px; top: 10px; right: 0; }
+    .hero-img-placeholder { width: 240px; height: 340px; left: 10px; }
     .float-card { display: none; }
 
-    /* Hero text */
-    .hero-label { font-size: 0.65rem; margin-bottom: 16px; }
-    .hero-title { font-size: 1.55rem; line-height: 1.28; margin-bottom: 20px; }
-    .hero-actions { flex-direction: column; gap: 10px; }
+    /* Social tag: overlaid bottom-left of image */
+    .hero-social-tag {
+      bottom: 16px;
+      left: 0px;
+      position: absolute;
+    }
+
     .btn-primary, .btn-secondary { width: 100%; justify-content: center; padding: 14px 20px; font-size: 0.85rem; }
-    .hero-social-tag { margin-top: 20px; }
+
+    /* Hero text */
+    .hero-label { font-size: 0.65rem; margin-bottom: 14px; }
+    .hero-title { font-size: 1.5rem; line-height: 1.28; margin-bottom: 0; }
 
     /* Sections */
     section { padding: 56px 20px; }
@@ -629,8 +681,11 @@
     .treatments-grid { grid-template-columns: 1fr; gap: 16px; }
     .card-img { height: 180px; }
     .card-body { padding: 20px; }
-    .card-title { font-size: 1.2rem; }
-    .card-desc { font-size: 0.84rem; }
+    .card-title { font-size: 1.1rem; }
+
+    /* Results carousel */
+    .result-slide img { height: 280px; }
+    .carousel-btn { display: none; }
 
     /* Reviews */
     .reviews-grid { grid-template-columns: 1fr; }
@@ -645,7 +700,6 @@
 
     /* CTA */
     .cta-glass { grid-template-columns: 1fr; padding: 32px 20px; gap: 24px; }
-    .cta-glass img { max-height: 220px; object-fit: cover; }
 
     /* Locations */
     .locations-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -659,11 +713,11 @@
   }
 
   @media (max-width: 480px) {
-    .hero-title { font-size: 1.35rem; }
-    .section-title { font-size: 1.5rem; }
-    .hero-img-frame { width: 220px; height: 280px; }
-    .hero-img-placeholder { width: 170px; height: 240px; }
-    .img-circle-bg { width: 190px; height: 190px; }
+    .hero-title { font-size: 1.3rem; }
+    .section-title { font-size: 1.45rem; }
+    .hero-img-frame { width: 270px; height: 340px; }
+    .hero-img-placeholder { width: 215px; height: 305px; }
+    .img-circle-bg { width: 230px; height: 230px; }
   }
 </style>
 </head>
@@ -693,12 +747,52 @@
   <div class="orb3 hero-bg-orb"></div>
 
   <div class="hero-inner">
-  <div class="hero-content">
-    <div class="hero-label">Odontologia &amp; Estética Facial</div>
-    <h1 class="hero-title">
-      Um atendimento pensado pra resolver o que te incomoda, <em>unir saúde e estética</em> e entregar o resultado que você realmente busca, com técnica e precisão.
-    </h1>
-    <div class="hero-actions">
+    <div class="hero-content">
+      <div class="hero-label">Odontologia &amp; Estética Facial</div>
+      <h1 class="hero-title">
+        Um atendimento pensado pra resolver o que te incomoda, <em>unir saúde e estética</em> e entregar o resultado que você realmente busca, com técnica e precisão.
+      </h1>
+      <!-- Desktop CTA buttons (hidden on mobile) -->
+      <div class="hero-actions hero-actions-desktop">
+        <a href="https://wa.me/5548984195309" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.537 4.05 1.477 5.762L0 24l6.395-1.457A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.598-.5-5.1-1.373l-.366-.218-3.796.866.933-3.703-.239-.38A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Agendar no WhatsApp
+        </a>
+        <a href="#treatments" class="btn-secondary">
+          Ver tratamentos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Image column -->
+    <div class="hero-image-wrap">
+      <div class="hero-img-frame">
+        <div class="img-circle-bg"></div>
+        <div class="hero-img-placeholder">
+          <img src="https://i.ibb.co/RpfKsqHS/freepik-a-highdefinition-professional-studio-portrait-phot-86578.png" alt="Dra. Mariane Botti">
+        </div>
+        <!-- Social tag overlaid on image bottom-left -->
+        <div class="hero-social-tag">
+          <div class="social-avatar"><img src="https://i.ibb.co/JF2Hf4WP/Whats-App-Image-2025-11-04-at-21-54-20-1.jpg" alt="Dra. Mariane"></div>
+          <div class="social-info">
+            <div class="social-name">Dra. Mariane Botti <span class="verified">✓</span></div>
+            <div class="social-handle">@marianebotti</div>
+          </div>
+        </div>
+        <div class="float-card float-card-1">
+          <div class="card-val">83+</div>
+          <div class="card-lab">Avaliações 5★</div>
+        </div>
+        <div class="float-card float-card-2">
+          <div class="card-val">5 anos</div>
+          <div class="card-lab">de experiência</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile CTA buttons (shown only on mobile, after image) -->
+    <div class="hero-actions hero-actions-mobile">
       <a href="https://wa.me/5548984195309" class="btn-primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.537 4.05 1.477 5.762L0 24l6.395-1.457A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.598-.5-5.1-1.373l-.366-.218-3.796.866.933-3.703-.239-.38A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         Agendar no WhatsApp
@@ -708,32 +802,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
-    <div class="hero-social-tag">
-      <div class="social-avatar" style="overflow:hidden;padding:0;"><img src="https://i.ibb.co/JF2Hf4WP/Whats-App-Image-2025-11-04-at-21-54-20-1.jpg" alt="Dra. Mariane" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;"></div>
-      <div class="social-info">
-        <div class="social-name">Dra. Mariane Botti <span class="verified">✓</span></div>
-        <div class="social-handle">@marianebotti</div>
-      </div>
-    </div>
   </div>
-
-  <div class="hero-image-wrap">
-    <div class="hero-img-frame">
-      <div class="img-circle-bg"></div>
-      <div class="hero-img-placeholder">
-        <img src="https://i.ibb.co/RpfKsqHS/freepik-a-highdefinition-professional-studio-portrait-phot-86578.png" alt="Dra. Mariane Botti">
-      </div>
-      <div class="float-card float-card-1">
-        <div class="card-val">83+</div>
-        <div class="card-lab">Avaliações 5★</div>
-      </div>
-      <div class="float-card float-card-2">
-        <div class="card-val">5 anos</div>
-        <div class="card-lab">de experiência</div>
-      </div>
-    </div>
-  </div><!-- end hero-image-wrap -->
-  </div><!-- end hero-inner -->
 </section>
 
 <!-- TREATMENTS -->
@@ -805,14 +874,29 @@
 <!-- RESULTS -->
 <section id="results">
   <div class="section-inner" style="text-align:center;">
-  <p class="section-label" style="color: var(--sage); text-align:center;">Resultados</p>
-  <h2 class="section-title" style="text-align:center;">Esse é o resultado de um<br>atendimento <em>especializado:</em></h2>
-  <div class="results-gallery">
-    <div class="result-frame reveal"><div class="result-inner">Antes / Depois</div><div class="before-after-tag">Antes</div></div>
-    <div class="result-frame reveal" style="transition-delay:0.1s"><div class="result-inner">Resultado</div><div class="before-after-tag">Depois</div></div>
-    <div class="result-frame reveal" style="transition-delay:0.2s"><div class="result-inner">Antes / Depois</div><div class="before-after-tag">Antes</div></div>
+    <p class="section-label" style="color: var(--sage);">Resultados</p>
+    <h2 class="section-title" style="color:white;">Esse é o resultado de um<br>atendimento <em>especializado:</em></h2>
+    <div class="results-carousel-wrap reveal">
+      <div class="results-carousel" id="resultsCarousel">
+        <div class="result-slide"><img src="https://i.ibb.co/fV3QHmN6/1.jpg" alt="Resultado 1"></div>
+        <div class="result-slide"><img src="https://i.ibb.co/bjJ5CGnr/2.jpg" alt="Resultado 2"></div>
+        <div class="result-slide"><img src="https://i.ibb.co/Z6GKLMmX/3.jpg" alt="Resultado 3"></div>
+        <div class="result-slide"><img src="https://i.ibb.co/sdxw6j9c/4.jpg" alt="Resultado 4"></div>
+        <div class="result-slide"><img src="https://i.ibb.co/WvvPtGz1/5.jpg" alt="Resultado 5"></div>
+        <div class="result-slide"><img src="https://i.ibb.co/Vc1JvJ4B/6.jpg" alt="Resultado 6"></div>
+        <div class="result-slide"><img src="https://i.ibb.co/VpDdkqnq/7.jpg" alt="Resultado 7"></div>
+        <div class="result-slide"><img src="https://i.ibb.co/gMTcHJSF/8.jpg" alt="Resultado 8"></div>
+        <div class="result-slide"><img src="https://i.ibb.co/q3w8Cvzf/9.jpg" alt="Resultado 9"></div>
+      </div>
+      <button class="carousel-btn carousel-prev" onclick="slideResults(-1)" aria-label="Anterior">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" onclick="slideResults(1)" aria-label="Próximo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
   </div>
-  </div><!-- end section-inner -->
 </section>
 
 <!-- ABOUT -->
@@ -820,8 +904,8 @@
   <div class="section-inner">
   <div class="about-grid">
     <div class="about-img-wrap reveal">
-      <div class="about-img-frame" style="background:none;color:transparent;">
-        <img src="https://i.ibb.co/sXRBCRk/Whats-App-Image-2025-11-04-at-21-54-20.jpg" alt="Dra. Mariane Botti" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;border-radius:32px;">
+      <div class="about-img-frame" style="background:none;">
+        <img src="https://i.ibb.co/ZpNy7GWJ/Whats-App-Image-2025-11-04-at-21-54-20.jpg" alt="Dra. Mariane Botti" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
       </div>
       <div class="about-badge">
         <div class="badge-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0112 0v1"/><path d="M12 12v4"/></svg></div>
@@ -966,6 +1050,65 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
+
+  // ── RESULTS CAROUSEL ──
+  const carousel = document.getElementById('resultsCarousel');
+  const dotsWrap = document.getElementById('carouselDots');
+  const slides = carousel ? carousel.querySelectorAll('.result-slide') : [];
+  let currentIdx = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsWrap.appendChild(dot);
+  });
+
+  function updateDots(idx) {
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  function goTo(idx) {
+    if (!slides.length) return;
+    currentIdx = Math.max(0, Math.min(idx, slides.length - 1));
+    const slide = slides[currentIdx];
+    carousel.scrollTo({ left: slide.offsetLeft - carousel.offsetLeft - 16, behavior: 'smooth' });
+    updateDots(currentIdx);
+  }
+
+  window.slideResults = function(dir) {
+    goTo(currentIdx + dir);
+  };
+
+  // Update active dot on manual scroll
+  if (carousel) {
+    carousel.addEventListener('scroll', () => {
+      const center = carousel.scrollLeft + carousel.offsetWidth / 2;
+      let closest = 0, minDist = Infinity;
+      slides.forEach((s, i) => {
+        const dist = Math.abs((s.offsetLeft + s.offsetWidth / 2) - (carousel.offsetLeft + center));
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      if (closest !== currentIdx) { currentIdx = closest; updateDots(currentIdx); }
+    }, { passive: true });
+
+    // Drag to scroll
+    let isDown = false, startX, scrollLeft;
+    carousel.addEventListener('mousedown', e => {
+      isDown = true; carousel.classList.add('dragging');
+      startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft;
+    });
+    carousel.addEventListener('mouseleave', () => { isDown = false; carousel.classList.remove('dragging'); });
+    carousel.addEventListener('mouseup', () => { isDown = false; carousel.classList.remove('dragging'); });
+    carousel.addEventListener('mousemove', e => {
+      if (!isDown) return; e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      carousel.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+  }
 </script>
 </body>
 </html>
