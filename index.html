@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dra. Mariane Botti — Odontologia e Estética</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -53,13 +54,21 @@
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 20px 60px;
-    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: center;
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     background: rgba(247,244,239,0.72);
     border-bottom: 1px solid rgba(184,196,168,0.2);
     transition: all 0.4s ease;
+    height: 72px;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .nav-logo img {
@@ -92,11 +101,20 @@
   /* ── HERO ── */
   #hero {
     min-height: 100vh;
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: flex;
     align-items: center;
-    padding: 120px 60px 80px;
+    justify-content: center;
+    padding: 120px 24px 80px;
     position: relative;
     overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
   }
 
   .hero-bg-orb {
@@ -129,15 +147,15 @@
   }
 
   .hero-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Outfit', sans-serif;
     font-size: clamp(2rem, 3.2vw, 3.2rem);
-    font-weight: 300; line-height: 1.18;
-    letter-spacing: -0.01em;
+    font-weight: 300; line-height: 1.22;
+    letter-spacing: -0.03em;
     color: var(--charcoal);
     margin-bottom: 40px;
     animation: fadeUp 0.8s 0.1s ease both;
   }
-  .hero-title em { font-style: italic; color: var(--sage-deep); }
+  .hero-title em { font-style: normal; color: var(--sage-deep); font-weight: 500; }
 
   .hero-sub {
     font-size: 1rem; line-height: 1.75;
@@ -238,7 +256,7 @@
   }
   .float-card-1 { bottom: 120px; right: -30px; animation-delay: 0s; }
   .float-card-2 { top: 80px; left: -20px; animation-delay: 2s; }
-  .float-card .card-val { font-size: 1.4rem; font-weight: 600; color: var(--sage-deep); }
+  .float-card .card-val { font-size: 1.4rem; font-weight: 600; color: var(--sage-deep); letter-spacing: -0.03em; }
   .float-card .card-lab { color: var(--text-light); font-size: 0.72rem; margin-top: 2px; }
 
   @keyframes float {
@@ -247,19 +265,25 @@
   }
 
   /* ── SECTION BASE ── */
-  section { padding: 100px 60px; position: relative; }
+  section { padding: 100px 24px; position: relative; }
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
   .section-label {
     font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--sage-deep); margin-bottom: 16px; font-weight: 400;
   }
   .section-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Outfit', sans-serif;
     font-size: clamp(2.2rem, 3.5vw, 3.2rem);
     font-weight: 300; line-height: 1.1;
+    letter-spacing: -0.03em;
     color: var(--charcoal); margin-bottom: 20px;
   }
   .section-title strong { font-weight: 600; }
-  .section-title em { font-style: italic; color: var(--sage-deep); }
+  .section-title em { font-style: normal; color: var(--sage-deep); font-weight: 500; }
 
   /* ── TREATMENTS ── */
   #treatments { background: var(--warm-white); }
@@ -267,7 +291,7 @@
 
   .treatments-grid {
     display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 24px; max-width: 1100px; margin: 0 auto;
+    gap: 24px;
   }
 
   .treatment-card {
@@ -295,7 +319,7 @@
     width: 100%; height: 100%;
     background: linear-gradient(135deg, #c8d4be 0%, #8a9e78 100%);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic;
+    font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-style: normal; font-weight: 500;
     color: rgba(255,255,255,0.6);
   }
   .card-img-overlay {
@@ -312,8 +336,9 @@
     margin-bottom: 18px; font-size: 1.2rem;
   }
   .card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.55rem; font-weight: 400; margin-bottom: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.45rem; font-weight: 400; margin-bottom: 12px;
+    letter-spacing: -0.02em;
     color: var(--charcoal);
   }
   .card-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; font-weight: 300; }
@@ -327,13 +352,13 @@
     padding: 40px; background: var(--charcoal); color: white;
     border-radius: 28px; margin-bottom: 32px; text-align: center;
   }
-  .rating-number { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; line-height: 1; }
+  .rating-number { font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 200; line-height: 1; letter-spacing: -0.04em; }
   .stars { color: #f5c842; font-size: 1.2rem; margin: 8px 0; letter-spacing: 2px; }
   .rating-sub { font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
 
   .reviews-grid {
     display: grid; grid-template-columns: 280px 1fr;
-    gap: 24px; max-width: 1100px; margin: 0 auto;
+    gap: 24px;
   }
 
   .reviews-left { display: flex; flex-direction: column; gap: 0; }
@@ -384,7 +409,7 @@
 
   .results-gallery {
     display: flex; gap: 20px; justify-content: center; margin-top: 50px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; width: 100%;
   }
   .result-frame {
     width: 280px; height: 360px; border-radius: 24px;
@@ -400,8 +425,8 @@
     width: 100%; height: 100%;
     background: linear-gradient(180deg, rgba(184,196,168,0.1) 0%, rgba(90,114,72,0.05) 100%);
     display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.15); font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem; font-style: italic; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.15); font-family: 'Outfit', sans-serif;
+    font-size: 1rem; font-style: normal; letter-spacing: 0.1em;
   }
   .before-after-tag {
     position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
@@ -417,7 +442,6 @@
   .about-grid {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 80px; align-items: center;
-    max-width: 1100px; margin: 0 auto;
   }
 
   .about-img-wrap { position: relative; }
@@ -426,8 +450,8 @@
     border-radius: 32px; overflow: hidden;
     background: linear-gradient(180deg, #c8d4be 0%, #8a9e78 100%);
     display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.4); font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem; font-style: italic;
+    color: rgba(255,255,255,0.4); font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem; font-style: normal;
     border: 1px solid rgba(184,196,168,0.3);
     box-shadow: 0 20px 60px rgba(90,114,72,0.15);
   }
@@ -444,23 +468,21 @@
     background: linear-gradient(135deg, var(--sage), var(--sage-deep));
     display: flex; align-items: center; justify-content: center;
   }
-  .badge-val { font-size: 1.4rem; font-weight: 600; color: var(--charcoal); line-height: 1; }
+  .badge-val { font-size: 1.4rem; font-weight: 600; color: var(--charcoal); line-height: 1; letter-spacing: -0.03em; }
   .badge-lab { font-size: 0.72rem; color: var(--text-light); }
 
   .about-text .section-title { margin-bottom: 24px; }
   .about-desc { font-size: 0.95rem; color: var(--text-mid); line-height: 1.8; font-weight: 300; margin-bottom: 20px; }
   .about-cred-row { display: flex; gap: 32px; margin-top: 36px; }
   .cred-item { text-align: center; }
-  .cred-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--sage-deep); }
+  .cred-val { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 300; color: var(--sage-deep); letter-spacing: -0.04em; }
   .cred-lab { font-size: 0.72rem; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
 
   /* ── CTA ── */
   #cta {
     background: var(--cream);
-    padding: 80px 60px;
   }
   .cta-glass {
-    max-width: 1100px; margin: 0 auto;
     background: var(--glass-bg);
     backdrop-filter: blur(24px);
     border: 1px solid var(--glass-border);
@@ -508,7 +530,7 @@
 
   .locations-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 20px; max-width: 1100px; margin: 0 auto;
+    gap: 20px;
   }
 
   .location-card {
@@ -539,11 +561,14 @@
   /* ── FOOTER ── */
   footer {
     background: var(--charcoal); color: rgba(255,255,255,0.7);
-    padding: 60px;
+    padding: 60px 24px;
   }
   .footer-grid {
     display: grid; grid-template-columns: 1fr 1fr 1fr;
     gap: 60px; max-width: 1100px; margin: 0 auto 48px;
+  }
+  .footer-bottom-inner {
+    max-width: 1100px; margin: 0 auto;
   }
   .footer-logo img {
     height: 60px; width: auto; object-fit: contain;
@@ -557,7 +582,7 @@
   .footer-col a:hover { color: var(--sage); }
   .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 28px; max-width: 1100px; margin: 0 auto;
+    padding-top: 28px;
     display: flex; justify-content: space-between; align-items: center;
     font-size: 0.75rem; color: rgba(255,255,255,0.3);
   }
@@ -598,11 +623,12 @@
 
   /* ── MOBILE ── */
   @media (max-width: 900px) {
-    nav { padding: 18px 24px; }
+    nav { padding: 0 20px; }
     .nav-links { display: none; }
-    #hero { grid-template-columns: 1fr; padding: 120px 24px 60px; }
+    #hero { padding: 100px 20px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 0; }
     .hero-image-wrap { display: none; }
-    section { padding: 70px 24px; }
+    section { padding: 70px 20px; }
     .treatments-grid { grid-template-columns: 1fr; }
     .reviews-grid { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -620,14 +646,16 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo"><img src="https://i.ibb.co/spHhMf39/Post-Instagram-Preenchimento-Labial-Est-tica-Beleza-Minimalista.png" alt="Dra. Mariane Botti"></div>
-  <ul class="nav-links">
-    <li><a href="#treatments">Tratamentos</a></li>
-    <li><a href="#reviews">Avaliações</a></li>
-    <li><a href="#about">Sobre</a></li>
-    <li><a href="#locations">Localização</a></li>
-    <li><a href="https://wa.me/5548984195309" class="nav-cta">Agendar</a></li>
-  </ul>
+  <div class="nav-inner">
+    <div class="nav-logo"><img src="https://i.ibb.co/spHhMf39/Post-Instagram-Preenchimento-Labial-Est-tica-Beleza-Minimalista.png" alt="Dra. Mariane Botti"></div>
+    <ul class="nav-links">
+      <li><a href="#treatments">Tratamentos</a></li>
+      <li><a href="#reviews">Avaliações</a></li>
+      <li><a href="#about">Sobre</a></li>
+      <li><a href="#locations">Localização</a></li>
+      <li><a href="https://wa.me/5548984195309" class="nav-cta">Agendar</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -636,6 +664,7 @@
   <div class="orb2 hero-bg-orb"></div>
   <div class="orb3 hero-bg-orb"></div>
 
+  <div class="hero-inner">
   <div class="hero-content">
     <div class="hero-label">Odontologia &amp; Estética Facial</div>
     <h1 class="hero-title">
@@ -675,11 +704,13 @@
         <div class="card-lab">de experiência</div>
       </div>
     </div>
-  </div>
+  </div><!-- end hero-image-wrap -->
+  </div><!-- end hero-inner -->
 </section>
 
 <!-- TREATMENTS -->
 <section id="treatments">
+  <div class="section-inner">
   <div class="treatments-header reveal">
     <p class="section-label">Especialidades</p>
     <h2 class="section-title">Principais <em>tratamentos</em></h2>
@@ -726,10 +757,12 @@
       </div>
     </div>
   </div>
+  </div><!-- end section-inner -->
 </section>
 
 <!-- REVIEWS -->
 <section id="reviews">
+  <div class="section-inner">
   <div class="reviews-header reveal">
     <p class="section-label">Depoimentos</p>
     <h2 class="section-title">O que meus <strong>pacientes</strong> estão dizendo</h2>
@@ -817,10 +850,12 @@
       </div>
     </div>
   </div>
+  </div><!-- end section-inner -->
 </section>
 
 <!-- RESULTS -->
 <section id="results">
+  <div class="section-inner" style="text-align:center;">
   <p class="section-label" style="color: var(--sage); text-align:center;">Resultados</p>
   <h2 class="section-title" style="text-align:center;">Esse é o resultado de um<br>atendimento <em>especializado:</em></h2>
   <div class="results-gallery">
@@ -828,10 +863,12 @@
     <div class="result-frame reveal" style="transition-delay:0.1s"><div class="result-inner">Resultado</div><div class="before-after-tag">Depois</div></div>
     <div class="result-frame reveal" style="transition-delay:0.2s"><div class="result-inner">Antes / Depois</div><div class="before-after-tag">Antes</div></div>
   </div>
+  </div><!-- end section-inner -->
 </section>
 
 <!-- ABOUT -->
 <section id="about">
+  <div class="section-inner">
   <div class="about-grid">
     <div class="about-img-wrap reveal">
       <div class="about-img-frame">Foto da Dra. Mariane no consultório</div>
@@ -864,10 +901,12 @@
       </div>
     </div>
   </div>
+  </div><!-- end section-inner -->
 </section>
 
 <!-- CTA -->
 <section id="cta">
+  <div class="section-inner">
   <div class="cta-glass reveal">
     <div class="cta-content">
       <p class="section-label">Agende agora</p>
@@ -900,10 +939,12 @@
       </div>
     </div>
   </div>
+  </div><!-- end section-inner -->
 </section>
 
 <!-- LOCATIONS -->
 <section id="locations">
+  <div class="section-inner">
   <div class="locations-header reveal">
     <p class="section-label">Onde me encontrar</p>
     <h2 class="section-title">Meus <strong>locais</strong> de atendimento</h2>
@@ -941,6 +982,7 @@
       </div>
     </a>
   </div>
+  </div><!-- end section-inner -->
 </section>
 
 <!-- FOOTER -->
@@ -958,17 +1000,18 @@
     <div class="footer-col">
       <div class="footer-col-title">Contato</div>
       <a href="tel:+5548984195309" style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.96a16 16 0 006.13 6.13l1.32-1.32a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> (48) 98419-5309</a>
-      <a href="mailto:marianedominguesbotti@gmail.com" style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> marianedominguesbotti@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#137e72617a727d76777c7e7a7d74667660717c67677a53747e727a7f3d707c7e" style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <span class="__cf_email__" data-cfemail="87eae6f5eee6e9e2e3e8eaeee9e0f2e2f4e5e8f3f3eec7e0eae6eeeba9e4e8ea">[email&#160;protected]</span></a>
     </div>
   </div>
-  <div class="footer-bottom">
+  <div class="footer-bottom-inner"><div class="footer-bottom">
     <span>© 2025 Dra. Mariane Botti · Todos os direitos reservados</span>
     <div class="footer-links">
       <a href="#">Termos de Uso</a>
       <a href="#">Políticas de Privacidade</a>
       <a href="#">Políticas de Cookies</a>
     </div>
-  </div>
+    </div><!-- end footer-bottom -->
+  </div><!-- end footer-bottom-inner -->
 </footer>
 
 <!-- WhatsApp FAB -->
@@ -976,13 +1019,7 @@
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.537 4.05 1.477 5.762L0 24l6.395-1.457A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.598-.5-5.1-1.373l-.366-.218-3.796.866.933-3.703-.239-.38A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Progress bar
   window.addEventListener('scroll', () => {
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (window.scrollY / total) * 100;
-    document.getElementById('progressBar').style.width = progress + '%';
-  });
-
-  // Reveal on scroll
-  const reveals = document.querySelecto
+    c
