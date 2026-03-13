@@ -640,11 +640,12 @@
   }
 
   .reveal {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    opacity: 1;
+    transform: none;
   }
   .reveal.visible {
-    opacity: 1; transform: translateY(0);
+    opacity: 1;
+    transform: none;
   }
 
   /* ── MOBILE ── */
@@ -1047,7 +1048,7 @@
     <div class="footer-col">
       <div class="footer-col-title">Contato</div>
       <a href="tel:+5548984195309" style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.96a16 16 0 006.13 6.13l1.32-1.32a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> (48) 98419-5309</a>
-      <a href="mailto:marienedominguesbotti@gmail.com" style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> marienedominguesbotti@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#620f03100b070c07060d0f0b0c05170711000d16160b22050f030b0e4c010d0f" style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <span class="__cf_email__" data-cfemail="cea3afbca7aba0abaaa1a3a7a0a9bbabbdaca1babaa78ea9a3afa7a2e0ada1a3">[email&#160;protected]</span></a>
     </div>
   </div>
   <div class="footer-bottom-inner"><div class="footer-bottom">
@@ -1066,7 +1067,7 @@
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.537 4.05 1.477 5.762L0 24l6.395-1.457A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.598-.5-5.1-1.373l-.366-.218-3.796.866.933-3.703-.239-.38A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Progress bar
   window.addEventListener('scroll', () => {
     const total = document.documentElement.scrollHeight - window.innerHeight;
@@ -1074,12 +1075,7 @@
     document.getElementById('progressBar').style.width = progress + '%';
   });
 
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => observer.observe(el));
+  // Reveal on scroll — disabled, elements visible by default
 
   // ── RESULTS CAROUSEL ──
   const carousel = document.getElementById('resultsCarousel');
@@ -1129,7 +1125,4 @@
     let isDown = false, startX, scrollLeft;
     carousel.addEventListener('mousedown', e => {
       isDown = true; carousel.classList.add('dragging');
-      startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft;
-    });
-    carousel.addEventListener('mouseleave', () => { isDown = false; carousel.classList.remove('dragging'); });
-    carousel.addEventListener('mouseup', () => { isDown = false; carousel.classList.
+      startX = e
